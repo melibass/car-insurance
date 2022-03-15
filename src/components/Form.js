@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { obtenerDiferenciaYear } from "../helper";
-import { calcularMarca } from "../helper";
-import { obtenerPlan } from "../helper";
+import PropTypes from 'prop-types';
+import { obtenerDiferenciaYear, calcularMarca, obtenerPlan } from "../helper";
+
 
 const Campo= styled.div`
     display: flex;
@@ -55,7 +55,7 @@ const Error = styled.div`
     margin-bottom: 2rem;
 `;
 
-const Form = ({guardarResumen}) => {
+const Form = ({guardarResumen, guardarCargando}) => {
 
     const [datos, guardarDatos] = useState({
         marca: '',
@@ -111,13 +111,20 @@ const Form = ({guardarResumen}) => {
         console.log(incrementoPlan) 
 
         resultado = parseFloat(incrementoPlan*resultado).toFixed(2);
-        console.log(resultado);
+        
+        guardarCargando(true);
 
-        //total
-        guardarResumen({
-            cotizacion: resultado,
-            datos
+        setTimeout(()=>{
+                //elimina el spinner
+                guardarCargando(false);
+                  //pasa la info al componente principal
+                guardarResumen({
+                    cotizacion: Number(resultado),
+                    datos
         })
+        },2000)
+
+      
     };
 
 
@@ -183,6 +190,11 @@ const Form = ({guardarResumen}) => {
     </form>
     
     );
+}
+
+Form.propTypes = {
+    guardarCargando: PropTypes.func.isRequired,
+    guardarResumen: PropTypes.func.isRequired
 }
  
 export default Form;
