@@ -3,14 +3,14 @@ html {
 }
 body {
   background: #e96443;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #904e95, #e96443);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #904e95, #e96443); 
+  background: -webkit-linear-gradient(to right, #54bcdb, #062736);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #62c6df, #043942); 
   font-family: Arial, Helvetica, sans-serif;
 }
 ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: none;
+  margin: none;
 }
 span.resultado {
   position: relative;
